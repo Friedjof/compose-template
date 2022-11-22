@@ -1,0 +1,50 @@
+version: "3.0"
+
+services:
+  portainer:
+    image: portainer/portainer-ce:2.16.2
+    container_name: portainer
+    restart: always
+    env_file:
+      - env/global.env
+      - env/portainer.env
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./data/portainer:/data
+    networks:
+      internal:
+        ipv4_address: 172.0.11.4
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5.2
+    container_name: phpmyadmin
+    restart: always
+    links:
+      - mariadb
+    env_file:
+      - env/global.env
+      - env/phpmyadmin.env
+    networks:
+      internal:
+        ipv4_address: 172.0.11.3
+
+  mariadb:
+    image: mariadb:10.10
+    container_name: MariaDB
+    restart: always
+    env_file:
+      - env/global.env
+      - env/mariadb.env
+    volumes:
+      - ./data/mariadb:/var/lib/mysql
+    networks:
+      internal:
+        ipv4_address: 172.0.11.2
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.0.11.0/29
