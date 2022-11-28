@@ -1,4 +1,4 @@
-# Compose template
+# Global - Compose template
 _by Friedjof Noweck_
 
 ## About
