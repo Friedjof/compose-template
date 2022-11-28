@@ -1,4 +1,4 @@
-# Compose template
+# Nextcloud - Compose template
 _by Friedjof Noweck_
 
 ## About
