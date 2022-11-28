@@ -12,6 +12,9 @@ services:
     volumes:
       - ./data/reverse-proxy/data:/data
       - ./data/reverse-proxy/letsencrypt:/etc/letsencrypt
+    networks:
+      internal:
+        ipv4_address: 172.0.11.5
 
   portainer:
     image: portainer/portainer-ce:2.16.2
