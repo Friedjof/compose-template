@@ -34,6 +34,9 @@ As bonus, there is also a setup script for the project. So you can start your pr
   2. The script will compare the env-templates with the env-files and create the missing ones
   3. After this two steps you will be asked for starting the container
 
+## Delete the project data
+The script `delete-all.sh` will delete container, volumes, networks, images, data and env-files but you will be asked for every step.
+
 ## Network
 - The network has a subnet of `172.0.11.0/29`
 - The network has a gateway of `172.0.11.1`
