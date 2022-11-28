@@ -1,6 +1,21 @@
 version: "3.0"
 
 services:
+  nextcloud:
+    image: nextcloud:25.0.1
+    container_name: nextcloud
+    restart: always
+    env_file:
+      - env/global.env
+      - env/nextcloud.env
+    volumes:
+      - ./data/nextcloud:/var/www/html
+    networks:
+      internal:
+        ipv4_address: 172.0.11.5
+    depends_on:
+      - mariadb
+
   portainer:
     image: portainer/portainer-ce:2.16.2
     container_name: portainer
