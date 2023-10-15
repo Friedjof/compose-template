@@ -13,6 +13,8 @@ As bonus, there is also a setup script for the project. So you can start your pr
 **If you have any questions or suggestions, feel free to contact me or create an issue.**
 
 ## Container
+- NGINX reverse proxy manager on http://172.0.11.5:81
+  - default login: `admin@example.com` `changeme`
 - Portainer on http://172.0.11.4:9000
 - PHPMyAdmin on http://172.0.11.3
 - MariaDB on port 3306

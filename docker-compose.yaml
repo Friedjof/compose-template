@@ -1,6 +1,21 @@
 version: "3.0"
 
 services:
+  reverse-proxy:
+    image: jc21/nginx-proxy-manager:2.9.19
+    container_name: reverse-proxy
+    restart: always
+    ports:
+      - "80:80"
+      - "81:81"
+      - "443:443"
+    volumes:
+      - ./data/reverse-proxy/data:/data
+      - ./data/reverse-proxy/letsencrypt:/etc/letsencrypt
+    networks:
+      internal:
+        ipv4_address: 172.0.11.5
+
   portainer:
     image: portainer/portainer-ce:2.16.2
     container_name: portainer
