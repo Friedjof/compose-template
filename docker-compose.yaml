@@ -1,14 +1,30 @@
 version: "3.0"
 
 services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: vscode
+    restart: always
+    env_file:
+      - env/global.env
+      - env/vscode.env
+    volumes:
+      - ./data/vscode:/config
+    networks:
+      internal:
+        ipv4_address: 172.0.11.6
+
   reverse-proxy:
-    image: jc21/nginx-proxy-manager:2.9.19
+    image: jc21/nginx-proxy-manager
     container_name: reverse-proxy
     restart: always
     ports:
       - "80:80"
       - "81:81"
       - "443:443"
+    env_file:
+      - env/global.env
+      - env/reverse-proxy.env
     volumes:
       - ./data/reverse-proxy/data:/data
       - ./data/reverse-proxy/letsencrypt:/etc/letsencrypt
